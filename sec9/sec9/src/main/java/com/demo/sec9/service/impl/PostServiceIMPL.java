@@ -80,7 +80,7 @@ public class PostServiceIMPL implements PostService {
         updatePost.setDescription(postDTO.getDescription());
         updatePost.setUser(user);
 
-        Post savePost = postRepository.save(post);
+        Post savePost = postRepository.save(updatePost);
 
         PostDTO returnDTO = new PostDTO();
         returnDTO.setId(savePost.getId());

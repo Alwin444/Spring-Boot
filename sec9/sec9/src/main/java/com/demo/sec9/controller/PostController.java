@@ -39,11 +39,13 @@ public class PostController {
         return ResponseEntity.status(HttpStatus.OK).body(postDTO);
     }
 
+    @PutMapping("{id}/posts/{postId}")
     public ResponseEntity<PostDTO> updatePosts(@PathVariable Long id,@PathVariable Long postId,@RequestBody PostDTO postDTO){
         PostDTO postDTO1 = postService.updatePost(id,postId,postDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(postDTO1);
     }
 
+    @DeleteMapping("{id}/posts/{postId}")
     public ResponseEntity<String>  deletePosts(@PathVariable Long id,@PathVariable Long postId){
         postService.deletePost(id,postId);
         return ResponseEntity.status(HttpStatus.OK).body("Post has been deleted");

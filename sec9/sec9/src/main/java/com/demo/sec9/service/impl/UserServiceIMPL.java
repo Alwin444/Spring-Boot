@@ -1,5 +1,6 @@
 package com.demo.sec9.service.impl;
 
+import com.demo.sec9.dto.PostDTO;
 import com.demo.sec9.dto.UserDTO;
 import com.demo.sec9.entity.User;
 import com.demo.sec9.exception.ResourceNotFoundException;
@@ -43,6 +44,17 @@ public class UserServiceIMPL implements UserService{
         userDTO.setFirst_name(user.getFirst_name());
         userDTO.setLast_name(user.getLast_name());
         userDTO.setEmail(user.getEmail());
+
+        List<PostDTO> postDTOS = user.getPosts().stream().map(post->{
+            PostDTO postDTO = new PostDTO();
+            postDTO.setId(post.getId());
+            post.setTitle(post.getTitle());
+            postDTO.setContent(post.getContent());
+            postDTO.setDescription(post.getDescription());
+            postDTO.setUserId(user.getId());
+            return postDTO;
+        }).toList();
+        userDTO.setPosts(postDTOS);
         return userDTO;
     }
 
@@ -55,6 +67,16 @@ public class UserServiceIMPL implements UserService{
             userDTO.setFirst_name(user.getFirst_name());
             userDTO.setLast_name(user.getLast_name());
             userDTO.setEmail(user.getEmail());
+            List<PostDTO> postDTOS = user.getPosts().stream().map(post -> {
+                PostDTO postDTO = new PostDTO();
+                postDTO.setId(post.getId());
+                postDTO.setTitle(post.getTitle());
+                postDTO.setContent(post.getContent());
+                postDTO.setDescription(post.getDescription());
+                postDTO.setUserId(user.getId());
+                return postDTO;
+            }).toList();
+            userDTO.setPosts(postDTOS);
             return userDTO;
         }).toList();
     }

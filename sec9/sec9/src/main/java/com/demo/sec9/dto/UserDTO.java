@@ -1,10 +1,13 @@
 package com.demo.sec9.dto;
 
+import java.util.List;
+
 public class UserDTO {
     private Long id;
     private String first_name;
     private String last_name;
     private String email;
+    private List<PostDTO> posts;
 
     public UserDTO() {
     }
@@ -46,5 +49,13 @@ public class UserDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<PostDTO> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<PostDTO> posts) {
+        this.posts = posts;
     }
 }
